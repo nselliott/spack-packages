@@ -87,7 +87,10 @@ class Samrai(AutotoolsPackage, CachedCMakePackage, CudaPackage):
     variant(
         "cxxstd",
         default="20",
-        values=("11", "14", "17", "20"),
+        values=(
+            conditional("11", "14", "17", when="@:4.5"),
+            "20",
+        ),
         multi=False,
         description="C++ standard",
         when="@4:",
